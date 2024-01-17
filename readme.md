@@ -28,3 +28,37 @@ Dotnet Server with:
 ### Database
 A reliable database to store stuff in. Probably Postgre.
 
+#### User Table
+* Internal User ID
+* Discord ID
+* Twilight Wars ID
+* Avatar Link
+
+#### Game Table
+* Internal Game ID
+* Twilight Wars Game ID
+* Game Name
+* Tournament ID
+* Start: Timestamp
+* End: Timestamp
+
+#### Game/User Mapping Table
+* Internal User ID
+* Internal Game ID
+
+#### Tournament Table
+* Tournament ID
+* Tournament Name
+* Start: Timestamp
+* End: Timestamp
+
+#### Status Table
+*Potentially just store this as json*
+
+* Internal Game ID
+* Fetched At: Timestamp
+* Active: Bool
+* Last Action: Timestamp
+* Victory Point Target: int
+* Victory Points
+
