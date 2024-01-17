@@ -6,4 +6,5 @@ services:
     image: andanti.no/twilight/server:latest
     ports:
       - 1080:80
-      - 1443:443
+    environment:
+      - "Urls=http://*:80"
