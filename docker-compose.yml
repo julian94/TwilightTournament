@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  twilight-server:
+    build: .
+    image: andanti.no/twilight/server:latest
+    ports:
+      - 1080:80
+      - 1443:443
