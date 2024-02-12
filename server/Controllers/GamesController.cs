@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Server.Polling;
 using System;
 using System.Threading.Tasks;
 
@@ -7,7 +8,7 @@ namespace Server.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class GamesController : ControllerBase
+public class GamesController(TwilightStatusReader statusReader) : ControllerBase
 {
     [HttpGet("")]
     public async Task<ActionResult> ListGames()
@@ -18,7 +19,9 @@ public class GamesController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult> GetGameInfo(string id)
     {
-        throw new NotImplementedException();
+        var status = await statusReader.GetGameState(id);
+
+        return new ObjectResult(status);
     }
 
     [Authorize]

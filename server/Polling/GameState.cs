@@ -8,6 +8,7 @@ public class GameState
     public int Round { get; set; }
     public string Phase { get; set; }
     public string Name { get; set; }
+    public bool Over {  get; set; }
 }
 
 public class PlayerState

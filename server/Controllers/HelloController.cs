@@ -7,5 +7,5 @@ namespace Server.Controllers;
 public class HelloController : ControllerBase
 {
     [HttpGet]
-    public string Get() => "Hello";
+    public string Get() => "Greetings Galaxy!";
 }
