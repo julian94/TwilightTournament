@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Server.Polling;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Server.Controllers;
@@ -13,7 +14,12 @@ public class GamesController(TwilightStatusReader statusReader) : ControllerBase
     [HttpGet("")]
     public async Task<ActionResult> ListGames()
     {
-        throw new NotImplementedException();
+        var tourneyGames = new List<string>()
+        {
+            "64d02381fe17c6001496b965",
+        };
+
+        return new ObjectResult(tourneyGames);
     }
 
     [HttpGet("{id}")]

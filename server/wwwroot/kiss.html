@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Simple Viewer</title>
+</head>
+<body>
+<h1>Twilight Tournament</h1>
+<h2 id="greeting"></h2>
+<hr />
+<div class="gameList" id="games">
+
+</div>
+
+<script>
+console.log("Hello world");
+fetch("/api/hello")
+	.then((resp) => resp.text())
+	.then(text => {
+		console.log(text);
+		let h = document.getElementById("greeting");
+		h.innerText = text;
+	});
+
+fetch("/api/games")
+	.then((resp) => resp.json())
+	.then((data) => {
+		console.log(data);
+
+		return data[0];
+	})
+	.then((id) => {
+		fetch(`/api/games/${id}`)
+			.then((resp) => resp.json())
+			.then((data) => {
+                let list = document.getElementById("games");
+                let game = document.createElement("div");
+				let title = document.createElement("h3");
+                title.textContent = data.name;
+                game.appendChild(title);
+				let roundNumber = document.createElement("h4");
+                roundNumber.innerText = `Round #${data.round}`;
+                game.appendChild(roundNumber);
+
+				let players = document.createElement("li");
+                let playerOne = document.createElement("el");
+                let playerTwo = document.createElement("el");
+                let playerThree = document.createElement("el");
+                let playerFour = document.createElement("el");
+                playerOne.innerText = data.players[0].name;
+                playerTwo.innerText = data.players[1].name;
+                playerThree.innerText = data.players[2].name;
+				playerFour.innerText = data.players[3].name;
+
+                players.appendChild(BuildPlayer(data.players[0]));
+                players.appendChild(BuildPlayer(data.players[1]));
+                players.appendChild(BuildPlayer(data.players[2]));
+                players.appendChild(BuildPlayer(data.players[3]));
+				game.appendChild(players);
+				list.appendChild(game);
+			})
+	});
+
+    function BuildPlayer(data) {
+		let el = document.createElement("el");
+		let player = document.createElement("div");
+		el.appendChild(player);
+
+        let avatar = document.createElement("img");
+		avatar.src = data.avatar;
+		player.appendChild(avatar);
+
+		let name = document.createElement("h5");
+		name.innerText = data.name;
+		player.appendChild(name);
+
+		let score = document.createElement("h6");
+		score.innerText = `${data.victoryPoints}VP`
+		player.appendChild(score);
+
+		return player;
+	}
+
+</script>
+<style>
+	li {
+		padding: 5px;
+	}
+    img {
+        width: 50px;
+        height: 50px;
+    }
+</style>
+</body>
+</html>
