@@ -1,0 +1,62 @@
+meta {
+  name: Changes
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{twilight}}/lobby/create
+  body:json{
+    {
+      "name": "ignore",
+      "note": "",
+      "mode": "All Pick",
+      "victoryPoints": 10,
+      "numberOfPlayers": 3,
+      "presetMap": "Build Galaxy",
+      "invitedPlayers": [],
+      "isPublic": false,
+      "usePok": true
+    }
+  }
+  auth: none
+}
+
+docs {
+# Example response
+
+```json
+{
+  "victoryPoints": 10,
+  "started": false,
+  "draftFactions": [],
+  "presetMap": "Build Galaxy",
+  "isPublic": false,
+  "usePok": true,
+  "_id": "65d386f78eba8600155d099d",
+  "name": "ignore",
+  "note": "",
+  "mode": "All Pick",
+  "numberOfPlayers": 3,
+  "players": [
+    {
+      "draftFactions": [],
+      "_id": "65d386f78eba8600155d099e",
+      "user": {
+        "_id": "6361462dcc38250016bb1ef4",
+        "username": "Julian",
+        "timeZone": "UTC+01:00",
+        "uploadedAvatar": true,
+        "avatar": "https://twilight-wars-prod.s3.amazonaws.com/avatar/6361462dcc38250016bb1ef4"
+      },
+      "host": true,
+      "joined": true
+    }
+  ],
+  "createdAt": 1708361463,
+  "updatedAt": 1708361463,
+  "__v": 0,
+  "showDeletionWarning": false
+}
+```
+}
